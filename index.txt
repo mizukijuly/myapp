@@ -1,0 +1,75 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+    <meta http-equiv="Content-Security-Policy" content="default-src *; style-src * 'unsafe-inline'; script-src * 'unsafe-inline' 'unsafe-eval'">
+    <link rel="stylesheet" href="components/loader.css">
+    <link rel="stylesheet" href="css/style.css">
+    <script src="components/loader.js"></script>
+    <script src="js/ncmb-2.0.0.min.js"></script>
+    <script type='text/javascript' src='//ajax.googleapis.com/ajax/libs/jquery/1.4/jquery.min.js'></script>
+    <script type='text/javascript' src='js/jquery.ba-hashchange.min.js'></script>
+    <script type='text/javascript' src='js/dynamicpage.js'></script>
+    <script>
+        // Add your code here
+        //SDKの初期化
+        var ncmb = new NCMB("2e1606b45a65c130b6800f495d59739ee40fd2584c80978cbc815c17d9790b29","163844571c187360b9d30e39ce1c0d9acb21bb729d0051e6f02ad327420e003b");
+        //Userのインスタンスを作成
+        var user = new ncmb.User();
+
+
+
+
+//button機能を正常に作用させるためfunction buttonでrequestSignUpEmailメソッドを内包する
+    function button(adrress){
+        
+        ncmb.User.requestSignUpEmail(adrress)
+        .then(function(data){
+        //送受信処理
+
+           var elemi= document.getElementById("inp");
+           var elemb= document.getElementById("but");
+           var elemfp= document.getElementById("fp");
+           elemi.parentNode.removeChild(elemi);
+           elemb.parentNode.removeChild(elemb);
+           elemfp.parentNode.removeChild(elemfp);
+    
+
+
+ 
+            })
+            .catch(function(err){
+            
+            //error 処理
+           alert("正しくメールアドレスが入力されていますか？");
+            });
+           
+           //メルアドの登録が終わったので、次は押したタイミングでページが変化するようにしたい。要するにコードが長くなってもいいからindex.html内でappが完結するようにしたい　popuppageメソッドが参考になるだろう
+           //方法は二つ。一つは各要素にIDを割り振り書き換えを行う。もう一つはページを変遷させる 今回は書き換えの方法を採る。つまりremoveChildで削除したのち新たにhtmlに要素を付け足す
+           //さすが！gitの使い方。おそらくオンライン上でリポジトリを作成し、オフライン環境でcloneを作る。そしてそれを修正したのちにコミットすればversion管理できるのではないか。
+
+    };
+
+    
+       
+
+        
+    </script>
+    
+    
+    
+</head>
+<body>
+
+    <p  id="fp">App template using NIFTY Cloud mobile backend</p>
+    <form>
+    <input id="inp" type="email" name="ad">
+
+    </form><br>
+    <button id="but" onclick="button(document.getElementById('inp').value)">click me</button>
+    
+
+</body>
+</html>
+20:31 09/12/2015
